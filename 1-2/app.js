@@ -1,32 +1,25 @@
 const express = require("express");
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.get(
-    ['/home', '/about', '/contact', '/'].forEach((path) => {
-        try {
-            app.get(path, function (req, res) {
-                if (path == "/home") {
-                    res.send("home route")
-                }
-                if (path == "/about") {
-                    res.send("About route")
-                }
-                if (path == "/contact") {
-                    res.send("Contact route")
-                }
-                if (path == "/") {
-                    res.send("root route")
-                }
-                const notFoundController = (req, res) => {
-                    res.status(404).send("not found.");
-                };
-                app.use(notFoundController);
-            })
-        }
-        catch (Error) {
-            throw new Error("There is an Error Here")
-        }
-    })
-)
+
+ app.get("/home",function (req,res) {
+    res.send("home route")
+})
+app.get("/about",function (req,res) {
+    res.send("About route")
+})
+app.get("/contact",function (req,res) {
+    res.send("Contact route")
+})
+app.get("/",function (req,res) {
+    res.send("root route")
+})
+// app.get("/*",function (req,res) {
+//     res.sendFile(`${__dirname}/views/page5.html`)
+// })
+
+const notFoundController = (req, res) => {
+    res.status(404).send("not found.");
+};
+app.use(notFoundController);
+
 app.listen(5005);

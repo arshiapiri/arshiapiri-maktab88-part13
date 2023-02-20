@@ -1,4 +1,3 @@
-
 const { json } = require("express");
 const express = require("express");
 const fs = require("fs");
@@ -13,7 +12,7 @@ app.get("/get-all-users",function (req,res) {
 
 app.get("/admins",function (req,res) {
     let userData =JSON.parse(fs.readFileSync("./user-data.json"))
-    res.send(userData.filter((user) => user.role == "admin"))
+    res.json(userData.filter((user) => user.role == "admin"))
 })
 
 app.listen(5005)

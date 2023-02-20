@@ -3,7 +3,6 @@ const app = express()
 
     app.get("/page1",function (req,res) {
         res.sendFile(`${__dirname}/views/page1.html`)
-        console.log(__dirname);
     })
     app.get("/page2",function (req,res) {
         res.sendFile(`${__dirname}/views/page2.html`)
